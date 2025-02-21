@@ -1,0 +1,84 @@
+Lab Program : 5
+Title : Illustrate the use of static and this keywords
+Problem Statement: Write a Java program to read and display student details.
+import java.io.*;
+class Student_details
+{
+	static int id=1000;
+	String name;
+	float marks;
+	static String college="MCC";
+	Student_details(String name,float marks)
+	{
+		this.name=name;
+		this.marks=marks;
+	}
+	static void change()
+	{
+		college="Mount Carmel College";
+	}
+	void display()
+	{
+		id++;
+		System.out.println("ID:"+id);
+		System.out.println("Name:"+name);
+		System.out.println("MArks:"+marks);
+		System.out.println("College:"+college);
+	}
+
+}
+
+public class Studentdata {
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+		BufferedReader input=new BufferedReader(new InputStreamReader(System.in));
+		Student_details[] s=new Student_details[10];
+		for(int i=0;i<3;i++)
+		{
+			System.out.println("Enter student name,marks");
+			String name=input.readLine();
+			float marks=Float.parseFloat(input.readLine());
+			s[i]=new Student_details(name,marks);
+		}
+		Student_details.change();
+		for(int i =0;i<3;i++)
+		{
+			System.out.println("Student Details \n--------------------------");
+			s[i].display();
+			System.out.println("-------------------------------------------------------");
+		}
+	}
+}
+
+Output:
+Enter student name,marks
+Raina N
+78
+Enter student name,marks
+Sumithra
+97
+Enter student name,marks
+Shanu
+88
+Student Details 
+--------------------------
+ID:1001
+Name:Raina N
+MArks:78.0
+College:Mount Carmel College
+-------------------------------------------------------
+Student Details 
+--------------------------
+ID:1002
+Name:Sumithra
+MArks:97.0
+College:Mount Carmel College
+-------------------------------------------------------
+Student Details 
+--------------------------
+ID:1003
+Name:Shanu
+MArks:88.0
+College:Mount Carmel College
+-------------------------------------------------------
+

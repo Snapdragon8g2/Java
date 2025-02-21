@@ -1,0 +1,56 @@
+import java.io.*;
+class Student 
+{
+	int Student_id;
+	int Course_id;
+	String Student_name;
+	String Course_name;
+	Student()
+	{
+		Student_id=0;
+		Course_id=0;
+		Student_name="";
+		Course_name="";
+	}
+	Student(int ids,int idc,String names,String namec)
+	{
+		Student_id=ids;
+		Course_id=idc;
+		Student_name=names;
+		Course_name=namec;
+	}
+	void Display()
+	{
+		System.out.println(Student_id+"\t\t"+Course_id+"\t\t"+Student_name+"\t\t"+Course_name);
+	}
+}
+
+public class StudentDetails {
+	public static void main(String[] args) throws IOException {
+		int sid,cid,n;
+		String sname,cname;
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter number of students");
+		n=Integer.parseInt(br.readLine());
+		Student S[]=new Student[n];
+		System.out.println("Enter Student Details");
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter Student ID:");
+			sid=Integer.parseInt(br.readLine());
+			System.out.println("Enter Course ID:");
+			cid=Integer.parseInt(br.readLine());
+			System.out.println("Enter Student name:");
+			sname=br.readLine();
+			System.out.println("Enter Course name:");
+			cname=br.readLine();
+			S[i]=new Student(sid,cid,sname,cname);
+		}
+		System.out.println("The student details are:");
+		System.out.println("Student ID\tCourse ID\tStudent Name\tCourse Name");
+		for(int i=0;i<n;i++)
+			S[i].Display();
+	}
+
+}
+

@@ -1,0 +1,70 @@
+Lab Program : 07
+Title : Demonstrate Multilevel Inheritance
+Problem Statement: Write a Java program to showcase a realistic use case of multilevel inheritance in a vehicle hierarchy
+import java.io.*;
+
+// Base class
+class Vehicle {
+    protected String brand; // Protected member
+
+    // Constructor
+    protected Vehicle(String brand) { 
+        this.brand = brand;
+        System.out.println("Vehicle constructor: Brand is " + brand);
+    }
+}
+
+// Intermediate class
+class Car extends Vehicle {
+    protected int seats; // Protected member
+
+    // Constructor
+    Car(String brand, int seats) {
+        super(brand); // Calling the parent class constructor
+        this.seats = seats;
+        System.out.println("Car constructor: Seats = " + seats);
+    }
+}
+
+// Derived subclass
+class ElectricCar extends Car {
+    protected int batteryCapacity; // Protected member
+
+    // Constructor
+    ElectricCar(String brand, int seats, int batteryCapacity) {
+        super(brand, seats); // Calling the parent class constructor
+        this.batteryCapacity = batteryCapacity;
+        System.out.println("ElectricCar constructor: Battery Capacity = " + batteryCapacity + " kWh");
+    }
+
+    // Protected method to display details
+    protected void displayDetails() {
+        System.out.println("Brand: " + brand);
+        System.out.println("Seats: " + seats);
+        System.out.println("Battery Capacity: " + batteryCapacity + " kWh");
+    }
+}
+
+// Main class to demonstrate the example
+public class MultilevelInheritanceUserInput {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // Reading inputs from the user
+        System.out.print("Enter the brand of the vehicle: ");
+        String brand = reader.readLine();
+
+        System.out.print("Enter the number of seats: ");
+        int seats = Integer.parseInt(reader.readLine());
+
+        System.out.print("Enter the battery capacity (in kWh): ");
+        int batteryCapacity = Integer.parseInt(reader.readLine());
+
+        // Creating an ElectricCar object
+        ElectricCar myElectricCar = new ElectricCar(brand, seats, batteryCapacity);
+
+        // Displaying details using the protected method
+        System.out.println("\nElectric Car Details:");
+        myElectricCar.displayDetails();
+    }
+}

@@ -1,0 +1,86 @@
+
+Lab Program : 04
+Title : Demonstrate Compile Time Polymorphism using Method Overloading
+Problem Statement: Write a Java program to compute Employee payroll
+import java.io.*;
+class Payroll
+{	
+	double DA,HRA,PF;
+	double calculate_Grosspay(float Basic)
+	{
+		DA=0.10*Basic;
+		HRA=0.12*Basic;
+		PF=0.15*Basic;
+		return (Basic+DA+HRA-PF);
+	}
+	double calculate_Grosspay(float Hours,float Wage)
+	{
+		return (Hours*Wage);
+	}
+	double calculate_Grosspay()
+	{
+		return (15000);
+	}
+}
+public class EmployeePayroll {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        Payroll E=new Payroll();
+        double salary=0;
+        System.out.println("Enter Employee name, code:");
+        String name=br.readLine();
+        String code=br.readLine();
+        System.out.println("Enter employee type-Regular Employee(RE),Daily Wage(DW),Consolidated(C)");
+        String type=br.readLine();
+        switch(type)
+        {
+	        case "RE":  System.out.println("Enter Employee basic salary:");
+	        		    float basic=Float.parseFloat(br.readLine());
+				        salary=E.calculate_Grosspay(basic);
+				        break;
+	        case "DW":  System.out.println("Enter no. of hours worked:");
+				        float hours=Float.parseFloat(br.readLine());
+				        System.out.println("Enter rate per hour:");
+				        float rate=Float.parseFloat(br.readLine());
+				        salary=E.calculate_Grosspay(hours,rate);
+				        break;
+	        case "C":   salary=E.calculate_Grosspay();
+	        			break;
+	        default:System.out.println("Invalid type");
+        }
+        System.out.println("Employee Details");
+        System.out.println("****************");
+        System.out.println("Employee name :"+name+"\nEmployee code:"+code+"\nSalary:Rs."+salary);
+	}
+}
+
+Output:
+
+Enter Employee name,code:
+Alexander
+1009
+Enter employee type-Regular Employee(RE),Daily Wage(DW),Consolidated(C)
+RE
+Enter Employee basic salary:
+42000
+Employee Details
+****************
+Employee name: Alexander
+Employee code:1009
+Salary:Rs. 44940.0
+
+Enter Employee name,code:
+Ramu
+1007
+Enter employee type-Regular Employee(RE),Daily Wage(DW),Consolidated(C)
+DW
+Enter no. of hours worked:
+8
+Enter rate per hour:
+800
+Employee Details
+****************
+Employee name: Ramu
+Employee code:1007
+Salary:Rs.6400.0
+

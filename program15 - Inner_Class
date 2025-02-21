@@ -1,0 +1,68 @@
+Lab Program : 
+Title : Illustrate the usage of inner class
+Problem Statement: A Java program to generate Fibonacci series.
+import java.io.*;
+class Outer
+{
+	private int n,a=0,b=1,c;
+	void test() throws IOException
+	{
+		Inner inobj= new Inner();
+		inobj.generateFibonacci();
+	}
+	class Inner
+	{
+		void generateFibonacci() throws IOException
+		{
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Enter the limt to generate fibonacci series");
+			n= Integer.parseInt(in.readLine());
+			if(n==1)
+				System.out.println("\t"+a);
+			else if(n<=2)
+				System.out.println("\t"+a+"\n\t"+b);
+			else
+			{
+				System.out.println("\t"+a+"\n\t"+b);
+				for(int i=1;i<=n;i++)
+				{
+					c=a+b;
+					
+					System.out.println("\t"+c);
+					a=b;
+					b=c;
+				}
+			}
+			
+		}
+	}
+}
+
+public class Inner_Outer_Class_demo
+{
+    public static void main(String[] args) throws IOException
+	{
+		// TODO Auto-generated method stub
+		Outer outobj= new Outer();
+		outobj.test();
+
+	}
+
+}
+Output:
+
+Enter the limt to generate fibonacci series
+10
+	0
+	1
+	1
+	2
+	3
+	5
+	8
+	13
+	21
+	34
+	55
+	89
+

@@ -1,0 +1,112 @@
+Lab Program : 09
+Title : Illustrate the significance of Interfaces
+Problem Statement: Write a Java program to generate an inventory bill for books.
+//Java program to generate books inventory bill
+
+package Labprograms;
+
+import java.io.*;
+interface Inventory
+{
+	public double calamount(int qty, double cost);
+      void display()
+}
+class Books implements Inventory
+{
+	int bookcode = 0, qty=0;
+	String name, author, title = " ";
+	double price = 0;
+
+	public void display()
+	{
+		System.out.println("Bookcode   :" + bookcode);
+		System.out.println("Title      :" + name);
+		System.out.println("Author     :" + author);
+		System.out.println("Price      :" + price);
+		System.out.println("Quantity   :" + qty);
+	}
+
+	public double calamount(int qty, double cost)
+	{
+		return qty * cost;
+	}
+}
+
+
+public class InventoryBill {
+	public static void main(String args[]) throws IOException
+	{
+		int i, j, n;
+		double total = 0.0;
+		double amount;
+		
+		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter the number of books selected :");
+		n = Integer.parseInt(br.readLine());
+		Books ob[] = new Books[n];
+		for(i=0;i<n; i++)
+		{
+			System.out.println("Enter the Bookcode, Title, Author, Price and Quantity");
+			ob[i] = new Books();
+			ob[i].bookcode = Integer.parseInt(br.readLine());
+			ob[i].name = br.readLine();
+			ob[i].author = br.readLine();
+			ob[i].price = Integer.parseInt(br.readLine());
+			ob[i].qty = Integer.parseInt(br.readLine());
+			
+			amount=ob[i].calamount(ob[i].qty, ob[i].price);
+			total = total + amount;
+		}
+		System.out.println("Details of books selected :");
+		System.out.println("****************************");
+		for(i=0;i<n;i++)
+		{	
+			ob[i].display();
+			System.out.println("________________________");
+			
+		}
+		System.out.println("Total Amount to be paid :");
+		System.out.println("****************************");
+		System.out.println("Rs:  " + total);
+		System.out.println("****************************");
+	}
+
+
+}
+
+Output:
+
+Enter the number of books selected :
+2
+Enter the bookcode, title, author, price and quantity
+1001
+Head First Java
+Kathy Sierra
+550
+2
+Enter the bookcode, title, author, price and quantity
+2002
+Unix Programming
+Yashwanth Kanetkar
+300
+2
+Details of books selected :
+****************************
+Bookcode   :1001
+Title      :Head First Java
+Author     :Kathy Sierra
+Price      :550.0
+Quantity   :2
+________________________
+Bookcode   :2002
+Title      :Unix Programming
+Author     :Yashwanth Kanetkar
+Price      :300.0
+Quantity   :2
+________________________
+Total Amount to be paid :
+****************************
+Rs:  1700.0
+****************************
+
+

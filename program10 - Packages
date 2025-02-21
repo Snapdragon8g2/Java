@@ -1,0 +1,71 @@
+Lab Program : 10
+Title : Implement user-defined packages and show its usage
+Problem Statement: Write a Java program to demonstrate the use of packages.
+package Pack1;
+
+public class Stringoperations {
+	public String str1,str2;
+    protected int start,end;
+}
+------------------------------------------------------------------------------------
+package Pack2;
+import java.io.*;
+public class Concatenation {
+
+		public void concat() throws IOException
+		   {
+			   Stringoperations obj=new Stringoperations();
+			   BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+			   System.out.println("Enter a string:");
+			   obj.str1=br.readLine();
+			   System.out.println("Enter another string:");
+			   obj.str2=br.readLine();
+			   System.out.println("Concatenated string: "+obj.str1.concat(obj.str2));
+		   }
+}
+------------------------------------------------------------------------------------
+
+package Pack3;
+import java.io.*;
+public class Extraction {
+		public void extract() throws IOException
+	      {
+	         Stringoperations obj=new Stringoperations();
+	 	   BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	 	   System.out.println("Enter a string:");
+	 	   obj.str1=br.readLine();
+	 	   System.out.println("Enter start index and end index:");
+	 	   obj.start=Integer.parseInt(br.readLine());
+	 	   obj.end=Integer.parseInt(br.readLine());
+	 	  System.out.println("The extracted string: "+obj.str1.substring(obj.start,obj.end));
+	    }
+}
+-----------------------------------------------------------------------------------
+package Pack3;
+import java.io.*;
+import Pack1.Concatenation;
+import Pack2.Extraction;
+public class Displaystring {
+
+	public static void main(String[] args) throws IOException {
+		Concatenation obj=new Concatenation();
+		obj.concat();
+		Extraction obj1=new Extraction();
+		obj1.extract();
+	}
+}
+Output:
+Enter a string:
+A positive start will work
+Enter another string:
+Better than a negative one!!!
+Concatenated string:  A positive start will work Better than a negative one!!!
+Enter a string:
+It is very easy to defeat someone
+Enter start index and end index:
+12
+14
+The extracted string:  ea
+
+
+

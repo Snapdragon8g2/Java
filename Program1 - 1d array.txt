@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+class ToDoList {
+    String[] tasks; // Array to store tasks
+    int taskCount;  // Number of tasks added
+    int maxSize;    // Maximum size of the task list
+
+    // Constructor to initialize the to-do list with a fixed size
+    void initializeData(int size) {
+        maxSize = size;
+        tasks = new String[maxSize];
+        taskCount = 0;
+    }
+
+    // Method to add a task to the to-do list
+     void addTask(String task) {
+        if (taskCount < maxSize) {
+            tasks[taskCount++] = task;
+            System.out.println("Task added successfully.");
+        } else {
+            System.out.println("Task list is full. Cannot add more tasks.");
+        }
+    }
+
+    // Method to display all tasks
+     void displayTasks() {
+        if (taskCount == 0) {
+            System.out.println("No tasks in the to-do list.");
+            return;
+        }
+
+        System.out.println("Your To-Do List:");
+        for (int i = 0; i < taskCount; i++) {
+            System.out.println((i + 1) + ". " + tasks[i]);
+        }
+    }   
+}
+public class onedimen_array {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the maximum number of tasks: ");
+        int size = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        ToDoList monday = new ToDoList(); // Create a ToDoList object
+        monday.initializeData(size);
+        int choice;
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add Task");
+            System.out.println("2. Display Tasks");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+            
+            switch(choice) {
+                case 1:
+                    System.out.print("Enter the task: ");
+                    String task = scanner.nextLine();
+                    monday.addTask(task);
+                    break;
+
+                case 2:
+                    monday.displayTasks();
+                    break;
+                case 3:
+                    System.out.println("Exiting the To-Do List App. Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 3);
+
+        scanner.close();
+    }
+}

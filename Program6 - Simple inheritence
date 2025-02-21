@@ -1,0 +1,92 @@
+Lab Program : 06
+Title : Demonstrate Simple Inheritance
+Problem Statement: Write a Java program to compute Students grade.
+import java.io.*;
+class Person {
+    // Protected members
+    protected String Fname;
+    protected String Lname;
+    protected String Address;
+    protected int Age;
+    Person(String fname, String lname, String add, int age) {
+        Fname = fname;
+        Lname = lname;
+        Address = add;
+        Age = age;
+    }
+
+    protected void display() {
+        System.out.println("First Name: " + Fname);
+        System.out.println("Last Name: " + Lname);
+        System.out.println("Address: " + Address);
+        System.out.println("Age: " + Age);
+    }
+}
+
+class Students extends Person {
+    protected int id;
+    protected String Course;
+    protected double percentage;
+    protected char grade;
+   Students(String fname, String lname, String add, int age, int ID, String std, double per) {
+        super(fname, lname, add, age);
+        id = ID;
+        Course = std;
+        percentage = per;
+    }
+
+    // Public method to calculate and display grade
+    public void showGrade() {
+        if (percentage >= 90)
+            grade = 'A';
+        else if (percentage >= 75)
+            grade = 'B';
+        else if (percentage >= 50)
+            grade = 'C';
+        else
+            grade = 'D';
+        System.out.println("Grade: " + grade);
+    }
+
+
+    // Protected method to display student-specific details
+    protected void Studentdisplay() {
+        System.out.println("ID: " + id);
+        System.out.println("Course: " + Course);
+        System.out.println("Percentage: " + percentage);
+    }
+}
+
+public class SimpleInheritance {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        // Input for person details
+        System.out.println("Enter Person's First name, Last name, Address, Age:");
+        System.out.println("-----------------------------------------------");
+        String FName = br.readLine();
+        String LName = br.readLine();
+        String Addr = br.readLine();
+        int a = Integer.parseInt(br.readLine());
+
+        // Input for student details
+        System.out.println("Enter Student's ID, Course, Percentage:");
+        System.out.println("-----------------------------------");
+        int Id = Integer.parseInt(br.readLine());
+        String Std = br.readLine();
+        double Per = Double.parseDouble(br.readLine());
+
+        // Create objects
+        Students sobj = new Students(FName, LName, Addr, a, Id, Std, Per);
+
+        // Display details
+        System.out.println("Student Personal Details");
+        System.out.println("*************************");
+        sobj.display(); // Accessing protected method from parent class
+
+        System.out.println("Student Educational Details");
+        System.out.println("*************************");
+        sobj.Studentdisplay(); // Accessing protected method from child class
+        sobj.showGrade(); // Public method
+    }
+}
