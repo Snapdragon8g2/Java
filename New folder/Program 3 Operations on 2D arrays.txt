@@ -1,0 +1,160 @@
+/*Program 3: Operations on 2D arrays
+Problem Statement: Multiply two matrices
+Control structures: if statements, for loops  */
+#include<stdio.h>
+main()
+{
+   int m,n,p,q,i,j,k;
+   int a[10][10],b[10][10],P[10][10];
+   printf("\n Matrix Multiplication");
+   printf("\n ------------------------------------\n");
+   do
+   	{ 
+   	   printf("\n Enter 2 compatible matrices");
+       printf("\n Rows and Columns of Matrix A: \n");
+       scanf("%d%d",&m,&n);
+       printf("\n Rows and Columns of Matrix B: \n");
+       scanf("%d%d",&p,&q);
+    }while(n!=p);
+    
+    printf("\n Matrix A :");
+    for(i=0;i<m;i++)
+    {
+    	for(j=0;j<n;j++)
+    	{
+	         printf("\n A[%d][%d] :",i,j);
+			 scanf("%d",&a[i][j]);	
+	    }
+    }
+    
+    printf("\n Matrix B :");
+    for(i=0;i<p;i++)
+    {
+    	for(j=0;j<q;j++)
+    	{
+	         printf("\n B[%d][%d] :",i,j);
+			 scanf("%d",&b[i][j]);	
+	    }
+    }
+    
+    for(i=0;i<n;i++)
+    {
+    	for(j=0;j<q;j++)
+    	{
+	    	P[i][j]=0;
+	    	for(k=0;k<n;k++)
+	    	{
+	    		P[i][j]=P[i][j]+a[i][k]*b[k][j];
+	    	}
+	    }
+    }
+    
+    printf("\n Matrix A :");
+    printf("\n ------------------------\n");
+    for(i=0;i<m;i++)
+    {
+    	for(j=0;j<n;j++)
+    	{
+			 printf("%d \t",a[i][j]);	
+	    }
+	    printf("\n");
+    }
+    
+    printf("\n Matrix B :");
+    printf("\n ------------------------\n");
+    for(i=0;i<p;i++)
+    {
+    	for(j=0;j<q;j++)
+    	{
+			 printf("%d \t",b[i][j]);	
+	    }
+	    printf("\n");
+    }
+    
+    printf("\n Matrix A*B :");
+    printf("\n ------------------------\n");
+    for(i=0;i<m;i++)
+    {
+    	for(j=0;j<q;j++)
+    	{
+			 printf("%d \t",P[i][j]);	
+	    }
+	    printf("\n");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* Program 4: ILLUSTRATION of 2D-ARRAY 
+Problem Statement: Addition & Subtraction of  matrices
+Control structures: if statements, for loops  */
+
+#include<stdio.h>
+int main()
+{
+	int i, j, r1, c1, r2, c2, a[10][10], b[10][10], S[10][10], D[10][10];
+	do
+	{
+		printf("\nILLUSTRATION OF ADD&SUB MATRIX USING 2D-ARRAY OPERATION");
+		printf("\n-----------------------------------------------");
+		printf("\nPlease enter compatible order for A and B");
+		printf("\nRows and Columns of Matrix A:");
+		scanf("%d%d", &r1, &c1);
+		printf("\nRows and Columns of Matrix B:");
+		scanf("%d%d", &r2, &c2);
+	}
+	while(r1!=r2||c1!=c2);
+	printf("\nElements of Matrix A and Matrix B");
+	printf("\n-------------------------------------");
+	for(i=0; i<r1; i++)
+	{
+		for(j=0; j<c1; j++)
+		{
+			printf("\n a[%d][%d]=",i,j);
+			scanf("%d",&a[i][j]);
+			printf("\n b[%d][%d]=",i,j);
+			scanf("%d",&b[i][j]);
+			S[i][j] = a[i][j]+b[i][j];
+			D[i][j] = a[i][j]-b[i][j];
+		}
+	}
+	printf("\nMATRIX A");
+	printf("\n-----------\n");
+	for(i=0; i<r1; i++)
+	{
+		for(j=0; j<c1; j++)
+		printf("%4d", a[i][j]);
+		printf("\n");
+	}
+	printf("\nMATRIX B");
+	printf("\n-----------\n");
+	for(i=0; i<r2; i++)
+	{
+		for(j=0; j<c2; j++)
+		printf("%4d", b[i][j]);
+		printf("\n");
+	}
+	printf("\n Matrix S = A+B\n");
+	printf("\n--------------------\n");
+	for(i=0; i<r1; i++)
+	{
+		for(j=0; j<c1; j++)
+		printf("%4d",S[i][j]);
+		printf("\n");
+	}
+	printf("\nMatrix D = A-B\n");
+	printf("---------------------\n");
+	for(i=0; i<r1; i++)
+	{
+		for(j=0; j<c1; j++)
+		printf("%4d", D[i][j]);
+		printf("\n");
+	}
+}

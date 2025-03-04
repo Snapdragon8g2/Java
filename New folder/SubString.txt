@@ -1,0 +1,75 @@
+/*Menu driven program to perform string operations->copy and substring*/
+#include<stdio.h>
+main()
+{
+	void copy(char *,char *);
+	void substr(char *,char *,int,int);
+  char src[25],dest[25]="*Null*",str[50],ss[50];
+	int s,l,st,len,choice;
+	fflush(stdin);
+	while(1)
+	{
+	     printf("\nString Operations2");
+		 printf("\n------------------");
+		 printf("\n1.Copy");
+		 printf("\n2.Substring");
+		 printf("\n3.Exit");
+		 printf("\n\nEnter your choice:");
+		 scanf("%d",&choice);
+		 fflush(stdin);
+		 switch(choice)
+		 fflush(stdin);
+		 {
+		    case 1: printf("\nEnter a string to be copied to another string: \n");
+	    			gets(src);
+	    			printf("\nBefore copying ");
+	    			printf("\n-----------------------");fflush(stdin);
+	    			printf("\nsourse string  is:%s",src);
+	    			printf("\nDestination string is:%s\n",dest);
+	    			    			
+	    			copy(dest,src);
+	    			
+	    			printf("\nAfter copying ");
+	    			printf("\n-----------------------");fflush(stdin);
+	    			printf("\nsourse string  is:%s",src);
+	    			printf("\nDestination string is:%s\n",dest);
+	    		
+    				printf("\n------------------\n");
+	    			break;
+	        case 2: printf("\nEnter the string :  ");
+	    	        gets(str);
+	    	        printf("\nEnter the start position of the substring & length to be extracted\n");
+   			        scanf("%d%d",&st,&len);fflush(stdin);
+  	                printf("\n------------------\n");
+   			        substr(str,ss,st,len);
+   			        printf("\nThe substring is %s",ss);
+		  	        printf("\n------------------\n");
+		  	        break;
+   		    case 3: printf("\nEND.....\n");
+                    printf("\n------------------\n");
+		            exit();
+		    default: printf("\nWrong choice!!Try again\n");
+	    }
+	}
+}
+void copy (char *s1,char *s2)
+{
+	while(*s2!='\0')
+	{
+		*s1=*s2;
+		s1++;
+		s2++;
+	}
+	*s1='\0';
+}
+
+void substr(char *str1,char *str2,int s,int l)
+{
+	int i;
+	str1=str1+(s-1);
+	for(i=0;i<l && *str1!='\0';i++)
+	{
+		*str2++ = *str1++;
+	}
+	*str2 = '\0';
+}
