@@ -1,0 +1,172 @@
+Lab Program : 
+Title : Develop simple application using swing components.
+Problem Statement: Java Swing application that simulates a real-time Employee Registration Form where users can enter employee details like name, department, email, and salary. When the user submits the form, the entered details are displayed in a message dialog
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class EmployeeRegistration extends JFrame implements ActionListener {
+    private JTextField nameField, emailField, salaryField;
+    private JComboBox<String> departmentBox;
+    private JButton submitButton, clearButton;
+
+    public EmployeeRegistration() {
+        // Set Frame Properties
+        setTitle("Employee Registration Form");
+        setSize(400, 300);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new GridLayout(5, 2, 10, 10));
+
+        // Create Components
+        JLabel nameLabel = new JLabel("Employee Name:");
+        nameField = new JTextField(20);
+
+        JLabel departmentLabel = new JLabel("Department:");
+        String[] departments = {"HR", "IT", "Finance", "Sales", "Marketing"};
+        departmentBox = new JComboBox<>(departments);
+
+        JLabel emailLabel = new JLabel("Email:");
+        emailField = new JTextField(20);
+
+        JLabel salaryLabel = new JLabel("Salary:");
+        salaryField = new JTextField(10);
+
+        submitButton = new JButton("Submit");
+        clearButton = new JButton("Clear");
+
+        // Add Action Listeners
+        submitButton.addActionListener(this);
+        clearButton.addActionListener(this);
+
+        // Add Components to Frame
+        add(nameLabel);
+        add(nameField);
+        add(departmentLabel);
+        add(departmentBox);
+        add(emailLabel);
+        add(emailField);
+        add(salaryLabel);
+        add(salaryField);
+        add(submitButton);
+        add(clearButton);
+
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submitButton) {
+            String name = nameField.getText();
+            String department = (String) departmentBox.getSelectedItem();
+            String email = emailField.getText();
+            String salary = salaryField.getText();
+
+            if (name.isEmpty() || email.isEmpty() || salary.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill all fields", "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {
+                String message = "Employee Details:\n"
+                        + "Name: " + name + "\n"
+                        + "Department: " + department + "\n"
+                        + "Email: " + email + "\n"
+                        + "Salary: " + salary;
+                JOptionPane.showMessageDialog(this, message, "Employee Registered", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else if (e.getSource() == clearButton) {
+            nameField.setText("");
+            emailField.setText("");
+            salaryField.setText("");
+            departmentBox.setSelectedIndex(0);
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new EmployeeRegistration());
+    }
+}
+
+
+
+Lab Program : 
+Title : Demonstrate Mouse and Keyboard events.
+Problem Statement: Swing application that displays the key code and character on press of a key and shows the click location and button used on mouse click.
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class EventDemo extends JFrame implements KeyListener, MouseListener {
+    private JLabel label;
+
+    public EventDemo() {
+        setTitle("Mouse and Keyboard Event Demo");
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        label = new JLabel("Interact using keyboard or mouse", SwingConstants.CENTER);
+        label.setFont(new Font("Arial", Font.PLAIN, 16));
+        add(label, BorderLayout.CENTER);
+
+        // Register listeners
+        addKeyListener(this);
+        addMouseListener(this);
+
+        setVisible(true);
+        // Request focus to ensure key events are captured
+        setFocusable(true);
+        requestFocusInWindow();
+    }
+
+    // KeyListener methods
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Invoked when a key is typed (pressed and released)
+    }	
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // Invoked when a key is pressed
+        int keyCode = e.getKeyCode();
+        char keyChar = e.getKeyChar();
+        label.setText("Key Pressed: Code=" + keyCode + ", Char=" + keyChar);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // Invoked when a key is released
+    }
+
+    // MouseListener methods
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // Invoked when the mouse is clicked
+        int x = e.getX();
+        int y = e.getY();
+        int button = e.getButton();
+        label.setText("Mouse Clicked: Button=" + button + " at (" + x + ", " + y + ")");
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // Invoked when a mouse button is pressed
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // Invoked when a mouse button is released
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // Invoked when the mouse enters a component
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // Invoked when the mouse exits a component
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(EventDemo::new);
+    }
+}
