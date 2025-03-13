@@ -1,0 +1,63 @@
+Lab Program : 
+Title : Implement user-defined packages and show its usage
+Problem Statement: Java program to demonstrate socket programming.
+SERVER CLASS FILE
+
+import java.io.*;
+import java.net.*;
+
+public class server {
+    public static void main(String[] args) {
+        int port = 5000; // Port number
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Server is running and waiting for a client...");
+
+            Socket socket = serverSocket.accept();
+            System.out.println("Client connected!");
+
+            // Read message from client
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String message = input.readLine();
+            System.out.println("Client says: " + message);
+
+            // Send response to client
+            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+            output.println("Hello, Client! Message received.");
+
+            // Close resources
+            input.close();
+            output.close();
+            socket.close();
+        } catch (IOException e) {
+        }
+    }
+}
+
+
+CLIENT CLASS FILE
+import java.io.*;
+import java.net.*;
+
+public class Client {
+    public static void main(String[] args) {
+        String serverAddress = "localhost"; // Server IP (use "localhost" for same machine)
+        int port = 5000; // Same port as server
+
+        try (Socket socket = new Socket(serverAddress, port)) {
+            // Send message to server
+            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+            output.println("Hello, Server!");
+
+            // Receive response from server
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String response = input.readLine();
+            System.out.println("Server says: " + response);
+
+            // Close resources
+            input.close();
+            output.close();
+        } catch (IOException e) {
+           
+        }
+    }
+}
