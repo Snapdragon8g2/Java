@@ -1,0 +1,80 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class EventDemo extends JFrame implements KeyListener, MouseListener {
+    private JLabel label;
+
+    public EventDemo() {
+        setTitle("Mouse and Keyboard Event Demo");
+        setSize(400, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        label = new JLabel("Interact using keyboard or mouse", SwingConstants.CENTER);
+        label.setFont(new Font("Arial", Font.PLAIN, 16));
+        add(label, BorderLayout.CENTER);
+
+        // Register listeners
+        addKeyListener(this);
+        addMouseListener(this);
+
+        setVisible(true);
+        // Request focus to ensure key events are captured
+        setFocusable(true);
+        requestFocusInWindow();
+    }
+
+    // KeyListener methods
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // Invoked when a key is typed (pressed and released)
+    }	
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // Invoked when a key is pressed
+        int keyCode = e.getKeyCode();
+        char keyChar = e.getKeyChar();
+        label.setText("Key Pressed: Code=" + keyCode + ", Char=" + keyChar);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // Invoked when a key is released
+    }
+
+    // MouseListener methods
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // Invoked when the mouse is clicked
+        int x = e.getX();
+        int y = e.getY();
+        int button = e.getButton();
+        label.setText("Mouse Clicked: Button=" + button + " at (" + x + ", " + y + ")");
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // Invoked when a mouse button is pressed
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // Invoked when a mouse button is released
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // Invoked when the mouse enters a component
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // Invoked when the mouse exits a component
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(EventDemo::new);
+    }
+}
