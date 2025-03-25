@@ -1,0 +1,66 @@
+Lab Program : 12
+Title : Illustrate Exception Handling
+Problem Statement: Write a Java program to simulate a bank account. If the withdrawal amount is greater than the account balance, throw a custom exception called Balancecheck
+// Custom Exception Class
+class Balancecheck extends Exception {
+    public Balancecheck(String message) {
+        super(message); // Pass the custom error message to the Exception class
+    }
+}
+
+// BankAccount Class
+class BankAccount {
+    private String accountHolderName;
+    private double balance;
+
+    // Constructor
+    public BankAccount(String Name, double Bal) {
+        this.accountHolderName = Name;
+        this.balance = Bal;
+    }
+
+    // Method to display account details
+    public void displayAccountInfo() {
+        System.out.println("Account Holder: " + accountHolderName);
+        System.out.println("Current Balance: $" + balance);
+    }
+
+    // Method to withdraw money
+    public void withdraw(double amount) throws Balancecheck {
+        if (amount > balance) {
+            throw new Balancecheck("Withdrawal amount exceeds the available balance!");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawal successful! New balance: $" + balance);
+        }
+    }
+
+    // Method to deposit money
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposit successful! New balance: $" + balance);
+    }
+}
+
+
+// Main Class to Demonstrate the Program
+public class CustomExceptionExample {
+    public static void main(String[] args) {
+         BankAccount account = new BankAccount("John Doe", 500.0);
+        account.displayAccountInfo();
+        try {
+            System.out.println("\nTrying to withdraw $300...");
+            account.withdraw(300); 
+            System.out.println("\nTrying to withdraw $300 again...");
+            account.withdraw(300); 
+        } catch (Balancecheck e) {
+            System.out.println("Error: " + e.getMessage()); // Handle the exception
+        }
+
+        System.out.println("\nDepositing $200...");
+        account.deposit(200);
+
+        System.out.println("\nFinal Account Info:");
+        account.displayAccountInfo();
+    }
+}
