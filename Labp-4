@@ -1,0 +1,57 @@
+# Shell script to display utility commands
+
+echo "Utility commands"
+echo ""
+echo "1. Logged in users"
+echo "2. Display Calendar"
+echo "3. Display Date"
+echo "4. Display Manual"
+echo "5. Display Current Directory"
+echo "6. Display disk free space"
+echo "7. Locate a file"
+echo "8. Exit"
+echo "Enter your choice(1/2/3/4/5/6/7/8): "
+read ch
+case $ch in
+1) echo "logged in users"
+   who
+   ;;
+2) echo "Display Calendar"
+   echo ""
+   echo "Enter the month"
+   read month
+   echo "Enter the year"
+   read year
+   cal $month $year
+   ;;
+3) echo "The current date is date"
+   ;;
+4) echo "Enter the command"
+   read cmd
+   man $cmd | more
+   ;;
+5) echo "The current directory is pwd"
+   ;;
+6) echo "The available free space available on the disk is df"
+   ;;
+7) echo "Enter the file name"
+   read fname
+   if [ -f $fname ]
+   then
+       echo "File exists in"
+       find -name $fname
+   else
+       echo "$fname does not exists"
+   fi
+   ;;
+8) exit
+   ;;
+*) echo "Invalid choice"
+   ;;
+esac
+echo -n "Do you want to continue(Y/N)? "
+read wish
+if [ $wish = "y" -o $wish = "Y" ]
+then
+    sh labprogram4
+fi
