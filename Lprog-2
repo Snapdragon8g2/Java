@@ -1,0 +1,51 @@
+echo "Simulation of ls commands"
+echo "1.List all files and directory"
+ls
+
+echo ""
+echo "2.List files with long format"
+ls -l
+
+echo ""
+echo "3.List files includig hidden files"
+ls -a
+
+echo ""
+echo "4.Listing files at current directory which ends with f"
+ls *f
+
+echo ""
+echo "5.List files and directory whose first character can be any character and last character should be sin"
+ls ?sin
+
+echo ""
+echo "6.List files and directory whose first character can be any character and last character should be s"
+ls ?s
+
+echo ""
+echo "7.List the files and directories which does not begin with a vowel"
+ls [!aeiouAEIOU]*
+
+echo ""
+echo "8.Listing the files names staring with vowels"
+ls [aeiouAEIOU]*
+
+echo ""
+echo "9.Listing the files and directories which begins with d"
+ls d*
+
+echo "Directory Commands"
+echo "1.Creating directory"
+mkdir mcc
+
+echo ""
+echo "2.Deleting a directory"
+rmdir mcc
+
+echo ""
+echo "3.Removes directory and its content recursively"
+rm -r mcc
+
+echo ""
+echo "4.Displays the present working directory"
+pwd
