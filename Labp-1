@@ -1,0 +1,27 @@
+echo "Enter action (copy/remove/rename): "
+read action
+
+if [ "$action" = "copy" ]; then
+    echo "Enter source file:"
+    read src
+    echo "Enter destination:"
+    read dest
+    cp "$src" "$dest"
+    echo "File copied."
+
+elif [ "$action" = "remove" ]; then
+    echo "Enter file to remove:"
+    read file
+    rm "$file"
+    echo "File removed."
+
+elif [ "$action" = "rename" ]; then
+    echo "Enter current filename:"
+    read oldname
+    echo "Enter new filename:"
+    read newname
+    mv "$oldname" "$newname"
+    echo "File renamed."
+else
+    echo "Invalid action."
+fi
